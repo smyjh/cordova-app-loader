@@ -1,0 +1,220 @@
+erDiagram
+  G5_SCH_INFO_STAT_COMP ||--o{ G5_SCH_INFO_STAT_APP_FILE : has
+  G5_SCH_INFO_STAT_COMP ||--o{ G5_SCH_INFO_STAT_IMG_FILE : has
+  G5_SCH_INFO_STAT_COMP ||--o{ G5_SCH_INFO_STAT_COM1_FILE : has
+  G5_SCH_INFO_STAT_COMP ||--o{ G5_SCH_INFO_STAT_COM2_FILE : has
+  G5_SCH_INFO_STAT_COMP ||--o{ G5_SCH_INFO_STAT_COM_FILE  : has
+  G5_SCH_INFO_STAT_COMP ||--o{ G5_SCH_INFO_VIP_IMG_FILE   : has
+
+  G5_SUGGEST ||--o{ G5_SUGGEST_ANS : answers
+
+  G5_SYS_PER_MENA_PART ||--o{ G5_SYS_PER_MENA : classifies
+
+  G5_WRITE_ADMIN ||--o{ G5_WRITE_ADMIN : parent_of
+  G5_WRITE_AREA  ||--o{ G5_WRITE_AREA  : parent_of
+  G5_WRITE_BUI   ||--o{ G5_WRITE_BUI   : parent_of
+  G5_WRITE_CHIP  ||--o{ G5_WRITE_CHIP  : parent_of
+  G5_WRITE_EDU   ||--o{ G5_WRITE_EDU   : parent_of
+  G5_WRITE_NOTICE||--o{ G5_WRITE_NOTICE: parent_of
+
+  G5_SCH_INFO_STAT_COMP {
+    int wr_id PK
+    varchar wr_name
+    varchar wr_sch_name
+    varchar wr_sido
+    varchar wr_gun
+    float wr_lat
+    float wr_long
+  }
+
+  G5_SCH_INFO_STAT_APP_FILE {
+    int wr_id PK
+    int wr_no FK "-> COMP.wr_id"
+    varchar wr_real_file
+    varchar wr_file
+    varchar wr_folder
+    datetime wr_datetime
+  }
+
+  G5_SCH_INFO_STAT_IMG_FILE {
+    int wr_id PK
+    int wr_no FK "-> COMP.wr_id"
+    varchar wr_real_file
+    varchar wr_file
+    varchar wr_folder
+    datetime wr_datetime
+    char type
+  }
+
+  G5_SCH_INFO_STAT_COM1_FILE {
+    int wr_id PK
+    int wr_no FK "-> COMP.wr_id"
+    varchar wr_real_file
+    varchar wr_file
+    varchar wr_folder
+    datetime wr_datetime
+  }
+
+  G5_SCH_INFO_STAT_COM2_FILE {
+    int wr_id PK
+    int wr_no FK "-> COMP.wr_id"
+    varchar wr_real_file
+    varchar wr_file
+    varchar wr_folder
+    datetime wr_datetime
+  }
+
+  G5_SCH_INFO_STAT_COM_FILE {
+    int wr_id PK
+    int wr_no FK "-> COMP.wr_id"
+    varchar wr_real_file
+    varchar wr_file
+    varchar wr_folder
+    datetime wr_datetime
+  }
+
+  G5_SCH_INFO_VIP_IMG_FILE {
+    int wr_id PK
+    int wr_no FK "-> COMP.wr_id"
+    varchar wr_real_file
+    varchar wr_file
+    varchar wr_folder
+    datetime wr_datetime
+  }
+
+  G5_SUGGEST {
+    int wr_id PK
+    varchar wr_name
+    varchar wr_title
+    text wr_content
+    char wr_stat
+    datetime wr_datetime
+  }
+
+  G5_SUGGEST_ANS {
+    int wr_id PK
+    int wr_no FK "-> SUGGEST.wr_id"
+    varchar wr_name
+    text wr_reply
+    char wr_type
+    datetime wr_datetime
+  }
+
+  G5_SYS_PER_MENA_PART {
+    int wr_id PK
+    varchar wr_title
+    char wr_use
+    int wr_level
+  }
+
+  G5_SYS_PER_MENA {
+    int wr_id PK
+    varchar wr_id1 UNIQUE
+    varchar wr_email UNIQUE
+    int wr_part FK "-> MENA_PART.wr_id"
+    enum wr_join_type
+    enum wr_part_auth
+    char wr_stat
+    datetime wr_date
+  }
+
+  G5_TBANNER {
+    int wr_id PK
+    varchar wr_title
+    datetime wr_stime
+    datetime wr_ftime
+    char wr_use
+  }
+
+  G5_WHEATHER_AREA {
+    varchar wh_area
+    varchar li_area1
+    varchar wh_code
+  }
+
+  G5_SWRITE_NOTICE {
+    int wr_id PK
+    varchar wr_subject
+    text wr_content
+    int wr_hit
+    char wr_use
+    datetime wr_datetime
+  }
+
+  G5_WRITE_ADMIN {
+    int wr_id PK
+    int wr_parent FK "self"
+    varchar wr_subject
+    text wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
+
+  G5_WRITE_AREA {
+    int wr_id PK
+    int wr_parent FK "self"
+    varchar wr_subject
+    text wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
+
+  G5_WRITE_BUI {
+    int wr_id PK
+    int wr_parent FK "self"
+    varchar wr_subject
+    text wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
+
+  G5_WRITE_CHIP {
+    int wr_id PK
+    int wr_parent FK "self"
+    varchar wr_subject
+    text wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
+
+  G5_WRITE_EDU {
+    int wr_id PK
+    int wr_parent FK "self"
+    varchar wr_subject
+    text wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
+
+  G5_WRITE_GALL {
+    int wr_id PK
+    varchar wr_subject
+    longtext wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
+
+  G5_WRITE_GALL_OLD {
+    int wr_id PK
+    varchar wr_subject
+    longtext wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
+
+  G5_WRITE_NOTICE {
+    int wr_id PK
+    int wr_parent FK "self"
+    varchar wr_subject
+    longtext wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
+
+  G5_WRITE_NOTICE_OLD {
+    int wr_id PK
+    varchar wr_subject
+    longtext wr_content
+    int wr_hit
+    datetime wr_datetime
+  }
